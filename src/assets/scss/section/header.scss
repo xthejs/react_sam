@@ -1,0 +1,128 @@
+@charset "utf-8";
+
+#header {
+    @include position-fixed;
+    z-index: 1000;
+}
+
+.header_inner {
+    @include flex-between;
+    background-color: rgba(116, 99, 99, .1);
+    padding: 16px;
+    backdrop-filter: blur(15px);
+
+    .header_logo {
+        font-size: 15px;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 1;
+
+        a {
+            em {
+                display: block;
+                font-size: 13px;
+            }
+        }
+    }
+
+    .header_nav {
+
+        &.show {
+            display: block;
+
+            ul {
+                position: absolute;
+                right: 0;
+                top: 70px;
+                background-color: var(--subBg300);
+                backdrop-filter: blur(15px);
+                padding: 20px;
+
+                li {
+                    display: block;
+                    text-align: right;
+
+                    a {
+                        display: inline-block;
+                        padding: 10px;
+                        color: var(--white);
+                    }
+                }
+            }
+        }
+
+        @media (max-width:800px) {
+            display: none;
+        }
+
+        li {
+            display: inline;
+
+            a {
+                display: inline-block;
+                font-size: 14px;
+                padding: 15px;
+                text-transform: uppercase;
+                position: relative;
+
+                &::before {
+                    content: "";
+                    width: calc(100% - 28px);
+                    height: 1px;
+                    background-color: var(--black);
+                    position: absolute;
+                    left: 14px;
+                    bottom: 10px;
+                    transform: scale(0);
+                    transition: transform .35s;
+                    transform-origin: left center;
+                }
+
+                &:hover::before {
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+
+    .header_nav_mobile {
+        display: none;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        // background-color: darkgray;
+
+        span {
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: var(--black);
+            margin-top: 19px;
+            position: relative;
+
+            &::before,
+            &::after {
+                content: "";
+                width: 40px;
+                height: 2px;
+                background-color: var(--black);
+                position: absolute;
+                transition: width .35s;
+            }
+
+            &::before {
+                top: 6px;
+                right: 0;
+            }
+
+            &::after {
+                bottom: 6px;
+                left: 0;
+            }
+        }
+
+        @media (max-width:800px) {
+            display: block;
+        }
+    }
+}
