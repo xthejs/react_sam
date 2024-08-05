@@ -19,7 +19,7 @@ const Homeview = () => {
                 <Skill />
                 <Site />
                 <Port />
-                <Contact />
+                {/* <Contact /> */}
             </Main>
             <Footer />
         </div>
